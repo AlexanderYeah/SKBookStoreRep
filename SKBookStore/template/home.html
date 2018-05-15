@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍是人类进步的阶梯</title>
+    <link rel="stylesheet" href="{{static_url('css/common.css')}}">
+    <link rel="stylesheet" href="{{static_url('css/bootstrap.min.css')}}">
+    <script src="{{static_url('js/jquery-1.12.2.js')}}" type="application/javascript"></script>
+    <script src="{{static_url('js/bootstrap.min.js')}}" type="application/javascript"></script>
+    <script src="{{static_url('js/jquery.SuperSlide.js')}}" type="application/javascript"></script>
+    <script src="{{static_url('js/jquery.js')}}" type="application/javascript"></script>
+    <script src="{{static_url('js/home.js')}}" type="application/javascript"></script>
+    <link rel="stylesheet" href="{{static_url('css/home.css')}}">
+    <style type="text/css">
+    #search .searchInput{width: 417px;height: 38px;position: relative;font-size: 15px;left: 434px;top: -26px;border: 2px solid #27b484}
+    #search .searchBtn {width: 86px;height: 38px;background: #27b484;font-size: 15px;color: #ffffff;position: relative;left: 430px;top: -26px;border: 2px solid #27b484}
+    /* 本例子css */.www360buy{ width:890px;margin:30px auto;border-top:2px solid #c00; }.www360buy .hd{ overflow:hidden; background:url(../images/bg.png) 0 -32px #efefef; border-left:1px solid #ddd; }.www360buy .hd li{ position:relative; margin-left:-1px; height:37px; line-height:37px; text-align:center; width:177px; float:left; border:1px solid #ddd; border-top:0;font:normal 14px/37px "Microsoft YaHei"; _font-weight:bold; cursor:default; }.www360buy .hd li.on{ width:176px; background:#fff; border-bottom:1px solid #fff; color:#c00; }.www360buy .bd{ height:230px; border:1px solid #ddd; border-top:0; }.www360buy .lh{ overflow:hidden; }.www360buy .lh li{ width:156px; padding:0 10px; float:left;}.www360buy .lh li .p-img{ width:130px; height:132px; padding:30px 13px 0 13px; margin:0 auto; text-align:center; }.www360buy .lh li .p-name{ height:36px; line-height:18px; word-break:break-all; word-wrap: break-word; overflow:hidden; }.www360buy .lh li .p-price{ color:#999; }.www360buy .lh li .p-price strong{ color:#c00; font-size:14px; font-family: verdana; }
+    .view{ width:200px; height:200px; overflow:hidden; position:relative; margin:10px; float:left;}
+.hover{
+	width:200px; background:rgba(0, 0 ,0 ,0.5); position:absolute; top:40px; left:0; text-align:center; color:#fff;
+
+	transform:rotate(55deg);
+	-moz-transform:rotate(55deg);
+	-webkit-transform:rotate(55deg);
+
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+
+overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写好样式，进行隐藏，用overflow:hidden; height:0;*/
+.hover h3{color:#fff; border-bottom:2px solid rgba(255, 255 ,255, 0.5); padding-bottom:10px;}
+.view:hover .hover{
+	height:120px;
+
+	transform:rotate(0deg);
+	-moz-transform:rotate(0deg);
+	-webkit-transform:rotate(0deg);
+}
+/*before   after为选择器，一般给选择器加动画背景，设置动画样式*/
+.view:before{
+	content:""; position:absolute; top:-240px; right:0;width:360px; height:360px; background:rgba( 150, 50, 100,0.5);
+
+	transform:rotate(55deg) translateX(60px);
+	-moz-transform:rotate(55deg) translateX(60px);
+	-webkit-transform:rotate(55deg) translateX(60px);
+
+	transform-origin:100% 0%;
+	-moz-transform-origin:100% 0%;
+	-webkit-transform-origin:100% 0%;
+
+	transition:all 0.5s ease 0.3s;
+	-moz-transition:all 0.5s ease 0.3s;
+	-webkit-transition:all 0.5s ease 0.3s;
+
+}/*写好样式，进行隐藏，用top:-240px;*/
+.view:hover:before{ top:0;}
+.view:after{
+	content:""; position:absolute;bottom:-240px; left:0;width:360px; height:360px; background:rgba( 150, 50, 100,0.5);
+
+	transform:rotate(55deg) translateX(-60px);
+	-moz-transform:rotate(55deg) translateX(-60px);
+	-webkit-transform:rotate(55deg) translateX(-60px);
+
+	transform-origin:0% 100%;
+	-moz-transform-origin:0% 100%;
+	-webkit-transform-origin:0% 100%;
+
+	transition:all 0.5s ease 0.3s;
+	-moz-transition:all 0.5s ease 0.3s;
+	-webkit-transition:all 0.5s ease 0.3s;
+}
+.view:hover:after{ bottom:0px;}
+    </style>
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#section1">搜索好书</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section2">今日推荐</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section3">Section 3</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#section4">Section 4</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#section5">Section 4</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#section6">...</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#section7">读书导航</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#section8">网络小说</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#section9">免责声明</a>
+    </li>
+  </ul>
+</nav>
+
+<div id="section1" class="container-fluid bg-success" style="width: 100%;height: 600px;background: url('../static/resource/ban44.jpg'),no-repeat,0px,0px;position: relative;">
+
+
+    <div style="position: relative;display: flex;width: 100%;height: 40px;padding-top:280px">
+
+        <div style="height:40px;line-height:40px;text-align:center;padding-left: 30%"><input type="text" size="50" style="background-color: transparent;border: 1.2px solid #58b195; color: white/" /></div>
+
+        <div style="width:80px;height: 42.4px;text-align: center;line-height:42.4px;background-color: #58b195;color: white">搜索</div>
+
+    </div>
+
+
+
+
+</div>
+<div id="section2" class="container-fluid" style="padding-top:70px;padding-bottom:70px">
+    <h2> 今日热门推荐 </h2>
+    <div class="container-fluid row" style="border: 1px solid rgba(225,225,225,1)">
+
+     <!--<div class="col-md-2" style="background-color: white;text-align: center;">-->
+        <!--<p style="font-size: 55px;padding-top: 30%">读</p>-->
+
+     <!--</div>-->
+        <!-- 今日推荐 -->
+    <div style="position: relative;margin:0 auto;align-self: center">
+            {% for book in recommond_books %}
+        <div class="col-md-2 view " style="text-align: center;cursor:pointer;margin-left: 8px;">
+             <img src="{{ book['book_face_img_url'] }}" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+             <div class="hover">
+
+                <p class="recommond_box" style="text-align: center;padding-top: 25%" onclick="javascript:window.open('http://localhost:8181/detail?path={{ book["book_info_url"] }}&img_src={{book["book_face_img_url"]}}','_blank');">{{ book['book_name'] }}</p>
+             </div>
+             <p style="padding-top: 8px;margin-bottom: 35px">{{ book['book_name'] }}</p>
+        </div>
+    {% end %}
+
+    </div>
+     <!--<div class="col-md-2" style="background-color: white;text-align: center;">-->
+         <!--<p style="font-size: 55px;padding-top: 30%">书</p>-->
+
+     <!--</div>-->
+
+    </div>
+
+
+</div>
+
+<div id="section3" class="container-fluid" style="background-color: white">
+<div class="hotComBox">
+    <!--左边评论区域-->
+    <div class="hotCom_Area">
+        <div class="hotCom_title">在线美文</div>
+        <div class="hotCom_tab">
+            <ul>
+                <li class="active" href="#">人物</li>
+                <li href="#">人生</li>
+                <li href="#">情感</li>
+                <li href="#">成长</li>
+                <li href="#">处世</li>
+                <li href="#">视野</li>
+                <li href="#">生活</li>
+                <li href="#">智慧</li>
+                <li href="#">心灵</li>
+            </ul>
+        </div>
+
+        <!--晒单框框-->
+        <div class="buyerShow">
+             <div class="container">
+                 <div class="row">
+                     {% for item in meiwen_infos %}
+                         <div class="col-md-3">
+                             <div class="showGoodsBox">
+                                 <div class="hotCom_goodsImg"><img src="{{ item['faceImg'] }}" alt=""/></div>
+                                 <div class="hotCom_goodsInfo">
+                                     <div>{{ item['title'] }}</div>
+                                     <div style="width: 100px;height: 30px">
+                                         <div style="padding: 5px;background-color: #3c78d8;color: white" onclick="javascript:window.open('http://localhost:8181/meidetail?path={{ item["href"] }}','_blank');">点击阅读全文→</div>
+
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     {%end%}
+
+
+                 </div>
+             </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+<div id="section4" class="container-fluid" style="padding-left:70px;padding-right:70px;padding-top: 70px;padding-bottom: 20px">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h4>链接列表项</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">First item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                        <a href="#" class="list-group-item list-group-item-action">First item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                    </div>
+            </div>
+            <div class="col-md-3">
+                <h4>链接列表项</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">First item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                    </div>
+            </div>
+            <div class="col-md-3">
+                <h4>链接列表项</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">First item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                    </div>
+            </div>
+            <div class="col-md-3">
+                <h4>链接列表项</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">First item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
+                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div id="section5" class="container-fluid bg-success" style="padding-top:70px;padding-bottom:70px">
+  <h1>Section 1</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section6" class="container-fluid bg-warning" style="padding-top:70px;padding-bottom:70px">
+  <h1>Section 2</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section7" class="container-fluid" style="padding-top:20px;padding-bottom:70px">
+
+
+<div class="container-fluid read_website" style="border: 1px solid rgba(225,225,225,1)">
+  <h2 style="margin-top: 20px">知名站点</h2>
+  <p>读书使人心明眼亮。</p>
+  <div class="row">
+
+     <div class="col read_website" style="background-color:white;text-align: center;" onclick="javascript:window.open('https://book.douban.com/','_blank');">
+         <img src="../static/resource/豆瓣.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">豆瓣读书</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://book.sina.com.cn/','_blank');">
+         <img src="../static/resource/新浪.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">新浪读书</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://www.sohu.com/','_blank');">
+         <img src="../static/resource/搜狐.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">搜狐读书</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://book.ifeng.com/','_blank');">
+         <img src="../static/resource/凤凰.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">凤凰读书</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://book.sina.com.cn/','_blank');">
+         <img src="../static/resource/人民网.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">人民网读书</p>
+     </div>
+
+  </div>
+
+</div>
+
+    <!--图书电商-->
+<div class="container-fluid read_website" style="border: 1px solid rgba(225,225,225,1);margin-top: 12px">
+  <h2 style="margin-top: 20px">图书电商</h2>
+  <p>读书使人充实，讨论使人机智，笔记使人准确，读史使人明智，读诗使人灵秀，数学使人周密，科学使人深刻，伦理使人庄重，逻辑修辞使人善辩。凡有所学，皆成性格。</p>
+  <div class="row">
+
+     <div class="col read_website" style="background-color:white;text-align: center;" onclick="javascript:window.open('http://book.dangdang.com/?_ddclickunion=P-219836|ad_type=0|sys_id=1#dd_refer=','_blank');">
+         <img src="../static/resource/当当.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">当当网</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://book.jd.com/?cu=true&utm_source=p.yiqifa.com&utm_medium=tuiguang&utm_campaign=t_1_656827&utm_term=126d6d74287c4240b2985c27de3ab1b7&abt=3','_blank');">
+         <img src="../static/resource/京东.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">京东网</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('https://www.amazon.cn/?_encoding=UTF8&camp=536&creative=3200&linkCode=ur2&tag=dushu0f-23','_blank');">
+         <img src="../static/resource/亚马逊.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">亚马逊中国</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('https://www.bookuu.com/','_blank');">
+         <img src="../static/resource/博库.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">博库网</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://www.winxuan.com/','_blank');">
+         <img src="../static/resource/文轩网.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">文轩网</p>
+     </div>
+
+  </div>
+
+
+
+</div>
+</div>
+<div id="section8" class="container-fluid" style="padding-top:20px;padding-bottom:70px;background-color: white">
+<div class="container-fluid read_website" style="border: 1px solid rgba(225,225,225,1)">
+  <h2 style="margin-top: 20px">网络小说</h2>
+  <p>读书要玩味。</p>
+  <div class="row">
+
+     <div class="col read_website" style="background-color:white;text-align: center;" onclick="javascript:window.open('https://www.qidian.com/','_blank');">
+         <img src="../static/resource/起点.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">起点中文网</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://www.zongheng.com/','_blank');">
+         <img src="../static/resource/纵横.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">纵横中文网</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://chuangshi.qq.com/','_blank');">
+         <img src="../static/resource/创世.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">创世中文网</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://www.17k.com/','_blank');">
+         <img src="../static/resource/17k.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">17k小说网</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://www.kanshu.com/','_blank');">
+         <img src="../static/resource/看书.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">看书网</p>
+     </div>
+
+  </div>
+
+
+
+</div>
+
+<div class="container-fluid read_website" style="border: 1px solid rgba(225,225,225,1);margin-top: 12px">
+  <h2 style="margin-top: 20px">在线阅读</h2>
+  <p>当一个伟大的思想作为一种福音降临这个世界时，它对于受陈规陋习羁绊的大众会成为一种冒犯，而在那些读书不少但学识不深的人看来，却是一桩蠢事。 —— 歌德</p>
+  <div class="row">
+
+     <div class="col read_website" style="background-color:white;text-align: center;" onclick="javascript:window.open('http://yuedu.163.com/','_blank');">
+         <img src="../static/resource/网易.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">网易云阅读</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('https://yuedu.baidu.com/','_blank');">
+         <img src="../static/resource/百度.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">百度阅读</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://e.jd.com/?cu=true&utm_source=p.yiqifa.com&utm_medium=tuiguang&utm_campaign=t_1_656827&utm_term=8cb4f2cc58df44b9b43c376f9a794cac&abt=3','_blank');">
+         <img src="../static/resource/京东电子书.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">京东电子书</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('http://www.duokan.com/','_blank');">
+         <img src="../static/resource/多看阅读.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">多看阅读</p>
+     </div>
+     <div class="col" style="background-color:white;text-align: center" onclick="javascript:window.open('https://read.douban.com/','_blank');">
+         <img src="../static/resource/豆瓣阅读.png" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
+         <p style="margin-top: 15px;">豆瓣阅读</p>
+     </div>
+
+  </div>
+
+
+
+</div>
+
+</div>
+
+
+<div id="section9" class="container-fluid" style="padding-top:70px;padding-bottom:70px;background-color: white">
+  <h2>免责声明</h2>
+   本网站所收集的部分公开资料来源于互联网，转载的目的在于传递更多信息及用于网络分享，并不代表本站赞同其观点和对其真实性负责，也不构成任何其他建议。本站部分作品是由网友自主投稿和发布、编辑整理上传，对此类作品本站仅提供交流平台，不为其版权负责。如果您发现网站上有侵犯您的知识产权的作品，请与我们取得联系，我们会及时修改或删除。
+本网站所提供的信息，只供参考之用。本网站不保证信息的准确性、有效性、及时性和完整性。本网站及其雇员一概毋须以任何方式就任何信息传递或传送的失误、不准确或错误，对用户或任何其他人士负任何直接或间接责任。在法律允许的范围内，本网站在此声明，不承担用户或任何人士就使用或未能使用本网站所提供的信息或任何链接所引致的任何直接、间接、附带、从属、特殊、惩罚性或惩戒性的损害赔偿。
+</div>
+
+
+
+
+<div id="footer" style="width: 100%;height: 150px;text-align: center;line-height: 150px;color: black;background-color: wheat;font-size: 35px">
+    书是人类进步的阶梯
+
+</div>
+
+
+</body>
+</html>

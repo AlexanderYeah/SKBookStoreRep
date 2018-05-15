@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情页面</title>
+    <link rel="stylesheet" href="{{static_url('css/common.css')}}">
+    <link rel="stylesheet" href="{{static_url('css/bootstrap.min.css')}}">
+    <script src="{{static_url('js/jquery-1.12.2.js')}}" type="application/javascript"></script>
+    <script src="{{static_url('js/bootstrap.min.js')}}" type="application/javascript"></script>
+
+</head>
+<body style="">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <ul class="navbar-nav" style="text-align: center">
+    <li class="nav-item">
+      <a class="nav-link" href="#section1">作品详情</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section2">内容简介</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section3">作者简介</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#section4">图书目录</a>
+    </li>
+
+    </li>
+  </ul>
+</nav>
+
+    <h2 style="margin-top: 70px;line-height: 100px;height: 100px;width:100%;margin-left: 250px;">{{book_detail_info["book_title"]}}</h2>
+
+    <div id="section1" class="container-fluid" style="display: flex;padding-top: 0px;width: 100%;height: 400px;background-color: white;position: relative;">
+
+
+        <div style="position: relative;margin-left: 250px;margin-top: 120px">
+            <img src="{{img_src}}" alt="../static/resource/待机.jpg">
+        </div>
+        
+        <div style="position:relative;margin-top: 120px;margin-left: 100px;background-color: white;width: 200px;height: 200px">
+            <p style="position: relative;color: #3c78d8;cursor: pointer;font-size: 20px">作者:   {{book_detail_info["book_author"]}}</p>
+            <p style="position: relative;color: #095ee6;cursor: pointer;font-size: 20px">出版社:   {{book_detail_info["book_public"]}}</p>
+            <p style="position: relative;color: #9900ff;cursor: pointer;font-size: 20px">出版时间:   {{book_detail_info["s_pub_time"]}}</p>
+            <p style="position: relative;color: #ff0000;cursor: pointer;font-size: 25px">定价:   {{book_detail_info["book_price"]}}</p>
+        </div>
+
+
+
+    </div>
+
+
+    <div id="section2" class="container-fluid" style="margin-bottom:50px;border: 1px solid rgba(225,225,225,1);width: 100%;padding-bottom: 70px;background-color: white;position: relative;">
+
+
+        <h2 style="margin-top: 30px;background-color:rgba(225,225,225,1);width: 100%;line-height: 70px;height: 70px">内容简介</h2>
+
+        <div>
+             {{book_detail_info["book_info"]}}
+
+        </div>
+
+
+    </div>
+
+
+
+    <div id="section3" class="container-fluid" style="margin-bottom: 70px;width: 100%;background-color: white;position: relative;">
+
+        <h2 style="margin-top: 0px;background-color:rgba(225,225,225,1);width: 100%;line-height: 70px;height: 70px">作者简介</h2>
+
+        <div >
+             {{book_detail_info["book_author_info"]}}
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer" style="margin-top: 0px;position: relative;background-color: rgba(225,225,225,1);width: 100%;height: 150px;text-align: center">
+
+        <div style="position: relative;margin-top: 30px;font-size: 35px;height: 90px;line-height: 90px">免责声明:仅供学习使用,杜绝一切商业的用途</div>
+
+        <div style="color:#f00 ">Copyright © AlexanderYeah All Rights Reserved</div>
+
+    </div>
+
+
+
+</body>
+</html>
