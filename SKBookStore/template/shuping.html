@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{res_dict["title"]}}</title>
     <link rel="stylesheet" href="{{static_url('css/home.css')}}">
+    <title>{{res_dict["title"]}}</title>
 </head>
 <body>
-    <div class="content">
+        <div class="content">
 
 
 
@@ -15,11 +15,10 @@
 
         <div style="margin-bottom: 20px;margin-top: 20px;margin-left: 60px">
 
-        <span style="color: red;font-size: 25px;">作者:{{res_dict["author"]}}</span>
-        <span style="color: green;font-size: 25px;">日期:{{res_dict["date"]}}</span>
+
 
         </div>
-        {%for item in res_dict["content"]%}
+        {%for item in res_dict["contents"]%}
             <p style="color: #3c78d8;font-size: 18px;margin-left: 20px;margin-right: 20px;margin-bottom: 18px">&nbsp &nbsp &nbsp  &nbsp{{item}}</p>
         {%end%}
 

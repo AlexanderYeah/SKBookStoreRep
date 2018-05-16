@@ -211,30 +211,37 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h4>链接列表项</h4>
+                <h4 style="margin-bottom: 15px">一日一书</h4>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">First item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
-                        <a href="#" class="list-group-item list-group-item-action">First item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                        {% for item in oneday_lists %}
+                            <a  class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/oneday?path={{ item["href"] }}&title={{ item["title"] }}','_blank');">{{item['title']}}</a>
+                        {% end %}
+
                     </div>
             </div>
             <div class="col-md-3">
-                <h4>链接列表项</h4>
+                <h4 style="margin-bottom: 15px">人生哲理</h4>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">First item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                        {% for item in zheli_list %}
+
+
+                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/zheli?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{item["title"]}}</a>
+
+                        {% end %}
+
+
                     </div>
             </div>
             <div class="col-md-3">
-                <h4>链接列表项</h4>
+                <h4 style="margin-bottom: 15px">每日书评</h4>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">First item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+                        {% for item in comment_list %}
+
+                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/shuping?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{ item["title"] }}</a>
+
+                        {% end %}
+
+
                     </div>
             </div>
             <div class="col-md-3">

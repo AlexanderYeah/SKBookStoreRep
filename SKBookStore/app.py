@@ -14,12 +14,14 @@ from bs4 import BeautifulSoup
 
 import urllib.request
 import requests
+import re
+import json
 baseUrl = "https://www.dushu.com";
 
 
-MeiWenURL = "http://www.85nian.net/category/renwu"
+MeiWenURL = "http://www.85nian.net/category/renwu";
 
-
+OneDayOneBookURL = "http://book.ifeng.com/listpage/65986/1/list.shtml";
 
 
 
@@ -35,13 +37,25 @@ recommond_book_list = [];
 # 美文的数据
 meiwen_info_list = [];
 
+# 每日一文的list
+one_day_one_book_list = [];
+
+# 书评的list
+book_comment_list = [];
+
+# 人生哲理list
+zheli_list = [];
 
 # 渲染首页的模板
 class HomeHandler(tornado.web.RequestHandler):
     def get(self, *args, **kwargs):
         global recommond_book_list;
         global meiwen_info_list;
-        self.render("home.html",recommond_books=recommond_book_list,meiwen_infos = meiwen_info_list);
+        global one_day_one_book_list;
+        global book_comment_list;
+        global zheli_list;
+        print(zheli_list);
+        self.render("home.html",recommond_books=recommond_book_list,meiwen_infos = meiwen_info_list,oneday_lists = one_day_one_book_list,comment_list = book_comment_list,zheli_list = zheli_list);
 
 # 详情页面的模板
 class BookDetailInfoHandler(tornado.web.RequestHandler):
@@ -62,6 +76,9 @@ class MeiWenDetailHandler(tornado.web.RequestHandler):
         self.render('meidetail.html',res_dict = res_dict);
 
 
+
+
+
 # 在线美文节后 根据前天请求的类型 数据返回
 class MeiWenHandler(tornado.web.RequestHandler):
 
@@ -76,6 +93,49 @@ class MeiWenHandler(tornado.web.RequestHandler):
         };
         # 返回给前端的数据
         self.write(dict);
+# 每日详情
+class OneDayDetailHandler(tornado.web.RequestHandler):
+    def get(self, *args, **kwargs):
+        href = self.get_argument('path',default=None);
+        title = self.get_argument('title',default=None);
+
+        rep = getHtml(href);
+        res_list = getOneDayBookInfo(rep);
+        self.render('oneday.html',res_list = res_list,title= title);
+
+
+# 每日书评页面
+class DayCommentHandler(tornado.web.RequestHandler):
+    def get(self, *args, **kwargs):
+        title = self.get_argument('title',default=None);
+        aid = self.get_argument('path',default=None);
+        # 根据对应的aid 找到对应的contents
+        global  book_comment_list;
+        targetDic = {};
+        for item in book_comment_list:
+            if item["aid"] == aid:
+                targetDic = item;
+
+
+        # 渲染到页面去
+        self.render("shuping.html",res_dict = targetDic);
+
+# 人生哲理详情
+class ZheLiDetailHandler(tornado.web.RequestHandler):
+    def get(self, *args, **kwargs):
+        title = self.get_argument('title',default=None);
+        aid = self.get_argument('path',default=None);
+        # 根据对应的aid 找到对应的contents
+        global  zheli_list;
+        targetDic = {};
+        for item in zheli_list:
+            if item["aid"] == aid:
+                targetDic = item;
+
+
+        # 渲染到页面去
+        self.render("zheli.html",res_dict = targetDic);
+
 
 
 
@@ -84,7 +144,10 @@ class MeiWenHandler(tornado.web.RequestHandler):
 app = tornado.web.Application(handlers=[(r"/index",HomeHandler),
                                         (r"/detail",BookDetailInfoHandler),
                                         (r"/meiwen",MeiWenHandler),
-                                        (r"/meidetail",MeiWenDetailHandler)
+                                        (r"/meidetail",MeiWenDetailHandler),
+                                        (r"/oneday",OneDayDetailHandler),
+                                        (r"/shuping",DayCommentHandler),
+                                        (r"/zheli",ZheLiDetailHandler)
 
                                         ], **settings);
 
@@ -135,6 +198,62 @@ def getHtml(url):
     html = res.read();
 
     return html;
+
+
+
+# 获取ifeghuang 一日一书的信息
+def getOneDayOneBook(rep):
+    soup = BeautifulSoup(rep, 'lxml');
+    # 根据href 正则表达式筛选
+    s_title_list = soup.find_all(name='a', attrs={"href": re.compile(r'^http://book.ifeng.com/a/')});
+
+    temp_res_list = [];
+
+    res_list = [];
+    href_list = [];
+    for item  in s_title_list:
+        if item.text != None and item.text != u'详细':
+            temp_res_list.append(item);
+
+    for i  in range(0,14):
+        if i % 2 == 0:
+            res_list.append(temp_res_list[i].text);
+            href_list.append(temp_res_list[i]['href']);
+
+    result_list = [];
+    for i in range(0,6):
+        dict = {
+            "href":href_list[i],
+            "title":res_list[i]
+        }
+        result_list.append(dict);
+
+    return result_list;
+
+# 爬取一日一书的详情页面  http://book.ifeng.com/a/20180508/108748_0.shtml
+def getOneDayBookInfo(rep):
+    soup = BeautifulSoup(rep, 'lxml');
+    # soup.find_all("div", style="display: flex")
+    # 通过style 选择器选择出来水元素
+    s_span_list = soup.find_all("span",style="font-size: 14px;");
+    content_list = [];
+    for item in s_span_list:
+        content_list.append(item.text);
+
+    return content_list;
+
+
+# 读取本地json 文件 书评
+def getLocalCommentBookInfo(path):
+    file = open(path, "rb")
+    fileJson = json.load(file)
+    res_list = fileJson['res'];
+
+    return res_list;
+
+
+
+
 
 # 获取首页的推荐图书的详情字典
 def getRecommondBook(rep):
@@ -305,12 +424,22 @@ def getArticleList(rep):
 
 # main 函数
 if __name__ == '__main__':
+
+    comment_json_path =  os.path.dirname(__file__) + '/shuping.json';
+    zheli_json_path = os.path.dirname(__file__) + '/zheli.json';
+    book_comment_list = getLocalCommentBookInfo(comment_json_path);
+    zheli_list = getLocalCommentBookInfo(zheli_json_path);
+
+
+
+
     # 获取推荐书籍的数据
     rep = getHtml(baseUrl);
     rep2 = getHtml(MeiWenURL);
+    rep3 = getHtml(OneDayOneBookURL);
     recommond_book_list = getRecommondBook(rep);
     meiwen_info_list = getArticleList(rep2);
-
+    one_day_one_book_list = getOneDayOneBook(rep3)
     http_server = tornado.httpserver.HTTPServer(app);
     http_server.listen(8181);
     tornado.ioloop.IOLoop.instance().start();
