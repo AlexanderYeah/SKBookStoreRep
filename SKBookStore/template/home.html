@@ -5,10 +5,12 @@
     <title>书籍是人类进步的阶梯</title>
     <link rel="stylesheet" href="{{static_url('css/common.css')}}">
     <link rel="stylesheet" href="{{static_url('css/bootstrap.min.css')}}">
+    <script src="{{static_url('js/echarts.common.min.js')}}" type="application/javascript"></script>
     <script src="{{static_url('js/jquery-1.12.2.js')}}" type="application/javascript"></script>
     <script src="{{static_url('js/bootstrap.min.js')}}" type="application/javascript"></script>
     <script src="{{static_url('js/jquery.SuperSlide.js')}}" type="application/javascript"></script>
     <script src="{{static_url('js/jquery.js')}}" type="application/javascript"></script>
+
     <script src="{{static_url('js/home.js')}}" type="application/javascript"></script>
     <link rel="stylesheet" href="{{static_url('css/home.css')}}">
     <style type="text/css">
@@ -83,17 +85,15 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
       <a class="nav-link" href="#section2">今日推荐</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#section3">Section 3</a>
+      <a class="nav-link" href="#section3">美文阅读</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#section4">Section 4</a>
+        <a class="nav-link" href="#section4">闲言碎语</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#section5">Section 4</a>
+        <a class="nav-link" href="#section5">数据统计</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#section6">...</a>
-    </li>
+
 
     <li class="nav-item">
         <a class="nav-link" href="#section7">读书导航</a>
@@ -116,9 +116,27 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
 
         <div style="height:40px;line-height:40px;text-align:center;padding-left: 30%"><input type="text" size="50" style="background-color: transparent;border: 1.2px solid #58b195; color: white/" /></div>
 
-        <div style="width:80px;height: 42.4px;text-align: center;line-height:42.4px;background-color: #58b195;color: white">搜索</div>
+        <div data-toggle="modal" data-target="#myModal" id="searchBtn" style="width:80px;height: 42.4px;text-align: center;line-height:42.4px;background-color: #58b195;color: white">搜索</div>
 
     </div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			</div>
+			<div class="modal-body">
+                Sorry 功能暂无开放
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
 
 
 
@@ -157,6 +175,8 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
 </div>
 
 <div id="section3" class="container-fluid" style="background-color: white">
+<h2 style="margin-left: 40px;margin-bottom: 40px"> 美文阅读 </h2>
+
 <div class="hotComBox">
     <!--左边评论区域-->
     <div class="hotCom_Area">
@@ -206,8 +226,9 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
 
 
 </div>
-<div id="section4" class="container-fluid" style="padding-left:70px;padding-right:70px;padding-top: 70px;padding-bottom: 20px">
 
+<div id="section4" class="container-fluid" style="padding-left:70px;padding-right:70px;padding-top: 70px;padding-bottom: 20px">
+    <h2 style="margin-left: 0px;margin-bottom: 40px"> 闲言碎语 </h2>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -245,11 +266,13 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
                     </div>
             </div>
             <div class="col-md-3">
-                <h4>链接列表项</h4>
+                <h4 style="margin-bottom: 15px">爱情感悟</h4>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">First item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Second item</a>
-                        <a href="#" class="list-group-item list-group-item-action">Third item</a>
+
+                        {% for item in ganwu_list %}
+                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/ganwu?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{item["title"]}}</a>
+                        {% end %}
+
                     </div>
             </div>
 
@@ -261,15 +284,24 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
 </div>
 
 
-<div id="section5" class="container-fluid bg-success" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 1</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+<div id="section5" class="container-fluid" style="padding-top:70px;padding-bottom:70px;background-color: white;">
+
+    <h2 style="margin-left: 80px;margin-bottom: 40px"> 数据统计 </h2>
+    <div class="row">
+        <div id="echartsPie" style="float:left;margin-left: 80px;width: 600px;height:400px;border: 1px solid rgba(225,225,225,1)"></div>
+        <div id="mychart" style="float:left;width: 600px;height:400px;margin-left: 80px;border: 1px solid rgba(225,225,225,1)"></div>
+    </div>
+
+
+
+
+
+
+
 </div>
+
 <div id="section6" class="container-fluid bg-warning" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 2</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+
 </div>
 <div id="section7" class="container-fluid" style="padding-top:20px;padding-bottom:70px">
 
@@ -337,6 +369,7 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
 
 </div>
 </div>
+
 <div id="section8" class="container-fluid" style="padding-top:20px;padding-bottom:70px;background-color: white">
 <div class="container-fluid read_website" style="border: 1px solid rgba(225,225,225,1)">
   <h2 style="margin-top: 20px">网络小说</h2>
@@ -405,12 +438,11 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
 </div>
 
 
-<div id="section9" class="container-fluid" style="padding-top:70px;padding-bottom:70px;background-color: white">
+<div id="section9" class="container-fluid" style="padding-top:70px;padding-bottom:70px;background-color: white;font-size: 25px">
   <h2>免责声明</h2>
    本网站所收集的部分公开资料来源于互联网，转载的目的在于传递更多信息及用于网络分享，并不代表本站赞同其观点和对其真实性负责，也不构成任何其他建议。本站部分作品是由网友自主投稿和发布、编辑整理上传，对此类作品本站仅提供交流平台，不为其版权负责。如果您发现网站上有侵犯您的知识产权的作品，请与我们取得联系，我们会及时修改或删除。
 本网站所提供的信息，只供参考之用。本网站不保证信息的准确性、有效性、及时性和完整性。本网站及其雇员一概毋须以任何方式就任何信息传递或传送的失误、不准确或错误，对用户或任何其他人士负任何直接或间接责任。在法律允许的范围内，本网站在此声明，不承担用户或任何人士就使用或未能使用本网站所提供的信息或任何链接所引致的任何直接、间接、附带、从属、特殊、惩罚性或惩戒性的损害赔偿。
 </div>
-
 
 
 

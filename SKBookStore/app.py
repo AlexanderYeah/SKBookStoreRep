@@ -46,6 +46,11 @@ book_comment_list = [];
 # 人生哲理list
 zheli_list = [];
 
+# 爱情感悟list
+
+ganwu_list = [];
+
+
 # 渲染首页的模板
 class HomeHandler(tornado.web.RequestHandler):
     def get(self, *args, **kwargs):
@@ -54,8 +59,10 @@ class HomeHandler(tornado.web.RequestHandler):
         global one_day_one_book_list;
         global book_comment_list;
         global zheli_list;
-        print(zheli_list);
-        self.render("home.html",recommond_books=recommond_book_list,meiwen_infos = meiwen_info_list,oneday_lists = one_day_one_book_list,comment_list = book_comment_list,zheli_list = zheli_list);
+        global ganwu_list;
+
+
+        self.render("home.html",recommond_books=recommond_book_list,meiwen_infos = meiwen_info_list,oneday_lists = one_day_one_book_list,comment_list = book_comment_list,zheli_list = zheli_list,ganwu_list = ganwu_list);
 
 # 详情页面的模板
 class BookDetailInfoHandler(tornado.web.RequestHandler):
@@ -137,7 +144,20 @@ class ZheLiDetailHandler(tornado.web.RequestHandler):
         self.render("zheli.html",res_dict = targetDic);
 
 
+class GanWuDetailHandler(tornado.web.RequestHandler):
+    def get(self, *args, **kwargs):
+        title = self.get_argument('title',default=None);
+        aid = self.get_argument('path',default=None);
+        # 根据对应的aid 找到对应的contents
+        global  ganwu_list;
+        targetDic = {};
+        for item in ganwu_list:
+            if item["aid"] == aid:
+                targetDic = item;
 
+
+        # 渲染到页面去
+        self.render("ganwu.html",res_dict = targetDic);
 
 
 # app 的编写
@@ -147,7 +167,8 @@ app = tornado.web.Application(handlers=[(r"/index",HomeHandler),
                                         (r"/meidetail",MeiWenDetailHandler),
                                         (r"/oneday",OneDayDetailHandler),
                                         (r"/shuping",DayCommentHandler),
-                                        (r"/zheli",ZheLiDetailHandler)
+                                        (r"/zheli",ZheLiDetailHandler),
+                                        (r"/ganwu",GanWuDetailHandler)
 
                                         ], **settings);
 
@@ -427,9 +448,10 @@ if __name__ == '__main__':
 
     comment_json_path =  os.path.dirname(__file__) + '/shuping.json';
     zheli_json_path = os.path.dirname(__file__) + '/zheli.json';
+    ganwu_json_path = os.path.dirname(__file__) + '/ganwu.json';
     book_comment_list = getLocalCommentBookInfo(comment_json_path);
     zheli_list = getLocalCommentBookInfo(zheli_json_path);
-
+    ganwu_list = getLocalCommentBookInfo(ganwu_json_path);
 
 
 

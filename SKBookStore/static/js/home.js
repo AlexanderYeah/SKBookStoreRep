@@ -5,6 +5,7 @@ $(function () {
 
 
 
+
 //      11 热门评论 tab的切换
         $('.hotCom_tab ul li').click(function() {
                       //当前添加active 将之前的active 移除
@@ -62,23 +63,87 @@ $(function () {
 
                 }
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         })
+
+
+    var echartsPie;
+    var json = [
+                {value:42.9,name:'女性'},
+                {value:57.1,name:'男性'}
+                ];
+    var option = {
+            title : {
+                text: '移动阅读用户男女分布比例',
+                subtext: '仅供参考',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} %"
+            },
+
+            calculable : true,
+            series : [
+                {
+                    name:'阅读比例',
+                    type:'pie',
+                    radius : '55%',//饼图的半径大小
+                    center: ['50%', '60%'],//饼图的位置
+                    data:json
+                }
+            ]
+        };
+
+    echartsPie = echarts.init(document.getElementById('echartsPie'));
+
+    echartsPie.setOption(option);
+
+
+    var pie2 ;
+
+  var option2 = {
+      title : {
+                text: '中国移动阅读市场用户地域分布情况',
+                subtext: '仅供参考',
+                x:'center'
+            },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'horizontal',
+        left: 'center',
+		bottom: 0,
+        data:['北京,上海，广州，深圳','其他省会城市','地级市','县级市','乡镇农村','其他']
+    },
+    series: [
+
+        {
+            name:'地域分布',
+            type:'pie',
+            radius: ['40%', '55%'],
+
+            data:[
+                {value:20, name:'北京,上海，广州，深圳'},
+                {value:37.5, name:'其他省会城市'},
+                {value:12.5, name:'地级市'},
+                {value:13, name:'县级市'},
+                {value:12, name:'乡镇农村'},
+                {value:5, name:'其他'}
+
+            ]
+        }
+    ]
+};
+
+
+
+    pie2 = echarts.init(document.getElementById('mychart'));
+
+
+    pie2.setOption(option2);
+
 
 
 
