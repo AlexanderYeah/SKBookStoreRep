@@ -16,6 +16,9 @@ import urllib.request
 import requests
 import re
 import json
+import sys
+
+
 baseUrl = "https://www.dushu.com";
 
 
@@ -446,9 +449,14 @@ def getArticleList(rep):
 # main 函数
 if __name__ == '__main__':
 
-    comment_json_path =  os.path.dirname(__file__) + '/shuping.json';
-    zheli_json_path = os.path.dirname(__file__) + '/zheli.json';
-    ganwu_json_path = os.path.dirname(__file__) + '/ganwu.json';
+    # 获取脚本的路径
+    path = sys.path[0];
+    print(path);
+
+
+    comment_json_path =  path + '/shuping.json';
+    zheli_json_path = path + '/zheli.json';
+    ganwu_json_path = path + '/ganwu.json';
     book_comment_list = getLocalCommentBookInfo(comment_json_path);
     zheli_list = getLocalCommentBookInfo(zheli_json_path);
     ganwu_list = getLocalCommentBookInfo(ganwu_json_path);

@@ -157,7 +157,7 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
              <img src="{{ book['book_face_img_url'] }}" alt="" style="margin-top: 15px;border: 1px solid rgba(225,225,225,1)">
              <div class="hover">
 
-                <p class="recommond_box" style="text-align: center;padding-top: 25%" onclick="javascript:window.open('http://localhost:8181/detail?path={{ book["book_info_url"] }}&img_src={{book["book_face_img_url"]}}','_blank');">{{ book['book_name'] }}</p>
+                <p class="recommond_box" style="text-align: center;padding-top: 25%" onclick="javascript:window.open('http://115.159.204.168:8181/detail?path={{ book["book_info_url"] }}&img_src={{book["book_face_img_url"]}}','_blank');">{{ book['book_name'] }}</p>
              </div>
              <p style="padding-top: 8px;margin-bottom: 35px">{{ book['book_name'] }}</p>
         </div>
@@ -206,7 +206,7 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
                                  <div class="hotCom_goodsInfo">
                                      <div>{{ item['title'] }}</div>
                                      <div style="width: 100px;height: 30px">
-                                         <div style="padding: 5px;background-color: #3c78d8;color: white" onclick="javascript:window.open('http://localhost:8181/meidetail?path={{ item["href"] }}','_blank');">点击阅读全文→</div>
+                                         <div style="padding: 5px;background-color: #3c78d8;color: white" onclick="javascript:window.open('http://115.159.204.168:8181/meidetail?path={{ item["href"] }}','_blank');">点击阅读全文→</div>
 
                                      </div>
                                  </div>
@@ -235,7 +235,7 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
                 <h4 style="margin-bottom: 15px">一日一书</h4>
                     <div class="list-group">
                         {% for item in oneday_lists %}
-                            <a  class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/oneday?path={{ item["href"] }}&title={{ item["title"] }}','_blank');">{{item['title']}}</a>
+                            <a  class="list-group-item list-group-item-action" onclick="javascript:window.open('http://115.159.204.168:8181/oneday?path={{ item["href"] }}&title={{ item["title"] }}','_blank');">{{item['title']}}</a>
                         {% end %}
 
                     </div>
@@ -246,7 +246,7 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
                         {% for item in zheli_list %}
 
 
-                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/zheli?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{item["title"]}}</a>
+                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://115.159.204.168:8181/zheli?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{item["title"]}}</a>
 
                         {% end %}
 
@@ -258,7 +258,7 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
                     <div class="list-group">
                         {% for item in comment_list %}
 
-                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/shuping?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{ item["title"] }}</a>
+                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://115.159.204.168:8181/shuping?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{ item["title"] }}</a>
 
                         {% end %}
 
@@ -270,7 +270,7 @@ overflow:hidden; height:0; z-index:4000;/*transform:translateX(200px);*/}/*写�
                     <div class="list-group">
 
                         {% for item in ganwu_list %}
-                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://localhost:8181/ganwu?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{item["title"]}}</a>
+                        <a href="#" class="list-group-item list-group-item-action" onclick="javascript:window.open('http://115.159.204.168:8181/ganwu?path={{ item["aid"] }}&title={{ item["title"] }}','_blank');">{{item["title"]}}</a>
                         {% end %}
 
                     </div>

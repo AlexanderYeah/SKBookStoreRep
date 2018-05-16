@@ -42,11 +42,10 @@ $(function () {
             $.ajax({
                 // http://localhost:8181/index
                 'type':'POST',
-                'url':"http://localhost:8181/meiwen",
+                'url':"http://115.159.204.168:8181/meiwen",
                 'data':{'cate':tabCount},
                 'success':function (response,status,xhr) {
                     // 拿到返回的数据
-
                     res_array = response["res"];
                     for(let i = 0;i<res_array.length;i++){
                         var dict = res_array[i];
@@ -56,7 +55,7 @@ $(function () {
                         $('.buyerShow .container .row').append(goodsBox);
                         $('.hotCom_goodsImg img').eq(i).attr('src',imgPath);
                         $('.hotCom_goodsInfo div a').eq(i).click(function () {
-                                window.open('http://localhost:8181/meidetail?path='+res_array[i]['href'],'_blank');
+                                window.open('http://115.159.204.168:8181/meidetail?path='+res_array[i]['href'],'_blank');
                         });
 
                     }
